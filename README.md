@@ -73,14 +73,12 @@ A combined table with:
 **"Could not find matching column"**
 → First column of platesetup.txt must be FileID, WellID, or File
 
-## Next Steps
+## Next Steps (More to come...)
 
 Use the output file just like before with `_analysis.R`:
 ```r
 library(data.table)
 p3dt <- fread('floreadaexport/P3_combodf.txt')
-
-# Your existing analysis code works here!
 filter(p3dt, `BL1-A` > 0)
 ```
 
