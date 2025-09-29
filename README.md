@@ -19,15 +19,14 @@ your_experiment/
 └── process_floreada_export.R
 ```
 
-### 3. Create platesetup.txt in Excel
+### 3. Edit platesetup.txt 
 
-Open Excel, create table like this, save as tab-delimited text:
+Open Excel or your Text Editor, edit the template / create a table like this, then save as tab-delimited text:
 
-| FileID | Sample | Treatment | Replicate |
-|--------|--------|-----------|-----------|
-| 259    | Exp1_A | Control   | 1         |
-| 260    | Exp1_B | Treated   | 1         |
-| 261    | Exp1_C | Control   | 2         |
+| FileID | Sample | Spacer | Backbone | gSZID | crRNAMOI | Stain | CellType |
+|--------|--------|--------|----------|-------|----------|-------|----------|
+| 259 | PC3_NT | None-No_guide | CRISPRa-VP64 | pSZ002 | 0.5 | GFP_only | PC3 |
+| 260 | PC3_NT | None-No_guide | CRISPRa-VPR | pSZ003 | 0.5 | GFP_only | PC3 |
 
 **Important**: First column should be `FileID`, `WellID`, or `File` depending on how your files are named. See `platesetup_instructions.txt` for more information.
 
