@@ -46,6 +46,16 @@ parentdir <- '/path/to/your/experiment'  # Your folder path
 csvstring = '_P3.csv'  # Your file pattern
 ```
 
+Change / add the same number of code blocks to match your gates: 
+```r
+gate1 <- processFloreadaExportDir(
+  dir = file.path(parentdir, export_folder),
+  csvstring = '_all.csv',              # CHANGE THIS to match your files
+  platesetup_file = 'platesetup.txt',
+  fileout = 'gate1_combodf.txt'        # CHANGE THIS to desired output name
+)
+```
+
 ### 6. Run It!
 ```r
 source('process_floreada_export.R')
@@ -56,11 +66,11 @@ Look for `P3_combodf.txt` in floreadaexport folder.
 
 ## What You Get
 
-A combined table with:
+A combined .txt table with:
 - ✓ All your flow data (all channels)
 - ✓ Metadata from keywords.txt
-- ✓ Experimental variables from platesetup.txt
-- ✓ Ready for analysis with your existing scripts
+- ✓ Experimental variables from `platesetup.txt`
+- ✓ Ready for plotting / analysis with `analysis.R`
 
 ## Common Issues
 
