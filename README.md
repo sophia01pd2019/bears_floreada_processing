@@ -23,10 +23,10 @@ your_experiment/
 
 Open Excel or your Text Editor, edit the template / create a table like this, then save as tab-delimited text:
 
-| FileID | Sample | Spacer | Backbone | gSZID | crRNAMOI | Stain | CellType |
-|--------|--------|--------|----------|-------|----------|-------|----------|
-| "259" | PC3_NT | None-No_guide | CRISPRa-VP64 | pSZ002 | 0.5 | GFP_only | PC3 |
-| "260" | PC3_NT | None-No_guide | CRISPRa-VPR | pSZ003 | 0.5 | GFP_only | PC3 |
+| FileID | Sample | Spacer | Backbone | Backbone2 | gSZID | crRNAMOI | Stain | Cells | Protein | Description |
+|--------|--------|--------|----------|-----------|-------|----------|-------|-------|---------|-------------|
+| 259 | PC3_NT | None-No_guide | CRISPRa-VP64 | | NA | pSZ002 | 0.5 | GFP_only | PC3 | NA |
+| 260 | PC3_NT | None-No_guide | CRISPRa-VPR | NA | pSZ003 | 0.5 | GFP_only | PC3 | NA | NA |
 
 **Important**: First column should be `FileID`, `WellID`, or `File` depending on how your files are named. If you are using FileID, remember to put " " around the IDs. See `platesetup_instructions.txt` for more information.
 
