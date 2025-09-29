@@ -33,9 +33,9 @@ Open Excel, create table like this, save as tab-delimited text:
 
 ### 4. Create keywords.txt
 
-Copy FCS keywords from your Attune/FCS Express/FlowJo:
-- Open one FCS file
-- View properties/keywords
+Copy FCS keywords from your Floreada interface: 
+- Right-click one FCS file
+- View Keywords
 - Copy text to keywords.txt
 - Save in floreadaexport folder
 
