@@ -1,6 +1,6 @@
 # Floreada CSV Processing Functions
-# Adapted for Attune NxT with FLoreada software
-# Replaces bears01::flowjo2df() functionality
+# Adapted for the Floreada software
+# Key Functions: Replaces bears01::flowjo2df() , merges ProcessFloreadaExportDir(), reads metadata from Floreada Keywords 
 
 library(readr)
 library(dplyr)
@@ -81,10 +81,17 @@ floreada2df <- function(csv_file, keywords_file = NULL, platesetup = NULL) {
     Date = NA,
     Operator = NA,
     Experiment = NA,
+    PlateName = NA,
     TotalEvents = nrow(flowdata),
     FlowRate = NA,
     Volume = NA
   )
+  
+  # Check for empty data
+  if (nrow(flowdata) == 0) {
+    message(paste0(csv_file, ' contains no data, skipping.'))
+    return(NULL)
+  }
   
   # Read keywords if provided
   if (!is.null(keywords_file) && file.exists(keywords_file)) {
@@ -96,6 +103,7 @@ floreada2df <- function(csv_file, keywords_file = NULL, platesetup = NULL) {
     if ("OP" %in% names(kw)) metadata$Operator <- kw$OP
     if ("PROJ" %in% names(kw)) metadata$Experiment <- kw$PROJ
     if ("EXP" %in% names(kw)) metadata$Experiment <- kw$EXP
+    if ("PLATENAME" %in% names(kw)) metadata$PlateName <- kw$PLATENAME
     if ("TOT" %in% names(kw)) metadata$TotalEvents <- as.numeric(kw$TOT)
     if ("FLOWRATE" %in% names(kw)) metadata$FlowRate <- as.numeric(kw$FLOWRATE)
     if ("VOL" %in% names(kw)) metadata$Volume <- as.numeric(kw$VOL)
@@ -240,7 +248,10 @@ processFloreadaExportDir <- function(dir,
     # Process this file
     tryCatch({
       file_data <- floreada2df(csv_file, keywords_file, platesetup)
-      all_data[[i]] <- file_data
+      if (!is.null(file_data)) {
+        file_data$csvstring <- csvstring  # Track which pattern this file matched
+        all_data[[i]] <- file_data
+      }
     }, error = function(e) {
       warning(paste("Error processing", basename(csv_file), ":", e$message))
     })
@@ -248,8 +259,35 @@ processFloreadaExportDir <- function(dir,
   
   # Combine all data using bind_rows (handles different columns gracefully)
   message("Combining all data...")
+  all_data <- all_data[!sapply(all_data, is.null)]  # Remove NULL entries from empty files
   combined_data <- bind_rows(all_data)
+  
+  # Add csvstring column to track which gate this is from
+  combined_data$csvstring <- csvstring
+  
   message(paste("Combined data has", nrow(combined_data), "rows and", ncol(combined_data), "columns"))
+  
+  # Check for unmatched annotations (similar to old flowjo logic)
+  if (!is.null(platesetup)) {
+    # Determine which ID column was used
+    id_col <- NULL
+    if ("FileID" %in% names(combined_data) && "FileID" %in% names(platesetup)) {
+      id_col <- "FileID"
+    } else if ("WellID" %in% names(combined_data) && "WellID" %in% names(platesetup)) {
+      id_col <- "WellID"
+    } else if ("File" %in% names(combined_data) && "File" %in% names(platesetup)) {
+      id_col <- "File"
+    }
+    
+    if (!is.null(id_col)) {
+      # Check if all annotations have matching data
+      unmatched <- platesetup[[id_col]][!(platesetup[[id_col]] %in% combined_data[[id_col]])]
+      if (length(unmatched) > 0) {
+        warning(paste0("These sample annotations do not match any CSV files: ", 
+                      toString(unmatched)))
+      }
+    }
+  }
   
   # Write output
   output_path <- file.path(dir, fileout)
@@ -321,7 +359,10 @@ processFloreadaExportDir_matched <- function(dir,
     # Process this file
     tryCatch({
       file_data <- floreada2df(csv_file, keywords_file, platesetup)
-      all_data[[i]] <- file_data
+      if (!is.null(file_data)) {
+        file_data$csvstring <- csvstring  # Track which pattern this file matched
+        all_data[[i]] <- file_data
+      }
     }, error = function(e) {
       warning(paste("Error processing", basename(csv_file), ":", e$message))
     })
@@ -329,8 +370,32 @@ processFloreadaExportDir_matched <- function(dir,
   
   # Combine all data
   message("Combining all data...")
+  all_data <- all_data[!sapply(all_data, is.null)]  # Remove NULL entries from empty files
   combined_data <- bind_rows(all_data)
+  
   message(paste("Combined data has", nrow(combined_data), "rows and", ncol(combined_data), "columns"))
+  
+  # Check for unmatched annotations
+  if (!is.null(platesetup)) {
+    # Determine which ID column was used
+    id_col <- NULL
+    if ("FileID" %in% names(combined_data) && "FileID" %in% names(platesetup)) {
+      id_col <- "FileID"
+    } else if ("WellID" %in% names(combined_data) && "WellID" %in% names(platesetup)) {
+      id_col <- "WellID"
+    } else if ("File" %in% names(combined_data) && "File" %in% names(platesetup)) {
+      id_col <- "File"
+    }
+    
+    if (!is.null(id_col)) {
+      # Check if all annotations have matching data
+      unmatched <- platesetup[[id_col]][!(platesetup[[id_col]] %in% combined_data[[id_col]])]
+      if (length(unmatched) > 0) {
+        warning(paste0("These sample annotations do not match any CSV files: ", 
+                      toString(unmatched)))
+      }
+    }
+  }
   
   # Write output
   output_path <- file.path(dir, fileout)

@@ -1,5 +1,3 @@
-FileID	Sample	Spacer	Backbone	gCHID	crRNAMOI	Stain	CellType
-259	PC3_259	NT-3	Control	gNT3	0	Unstained	PC3
-260	PC3_260	Target1	pCH38	gCH001	0.5	CD151-APC	PC3
-261	PC3_261	Target2	pCH38	gCH002	0.5	CD55-PE	PC3
-262	PC3_262	Target3	pCH39	gCH003	1.0	CD81-PE	PC3
+FileID	Sample	Spacer	Backbone	Backbone2	gSZID	crRNAMOI	Stain	Cells	Protein	Description
+259	PC3_NT	None-No_guide	CRISPRa-VP64	NA	pSZ002	0.5	GFP_only	PC3	NA	NA
+260	PC3_NT	None-No_guide	CRISPRa-VPR	NA	pSZ003	0.5	GFP_only	PC3	NA	NA
