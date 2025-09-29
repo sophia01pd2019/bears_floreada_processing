@@ -26,10 +26,10 @@ C1	Sample7	uninfected	pRG212	gCH000	0	None	Control
 # Example 2: Using FileID (if keywords.txt has $FIL field or filename is just a number)
 
 FileID	Sample	Condition	Replicate	Concentration
-"259"	Exp1_A	Treated	1	10uM
-"260"	Exp1_B	Treated	2	10uM
-"261"	Exp1_C	Control	1	0uM
-"262"	Exp1_D	Control	2	0uM
+259	Exp1_A	Treated	1	10uM
+260	Exp1_B	Treated	2	10uM
+261	Exp1_C	Control	1	0uM
+262	Exp1_D	Control	2	0uM
 
 # Example 3: Using full filename
 
