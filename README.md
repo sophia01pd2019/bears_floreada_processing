@@ -76,7 +76,7 @@ A combined table with:
 
 ## Next Steps
 
-Use the output file just like before:
+Use the output file just like before with `_analysis.R`:
 ```r
 library(data.table)
 p3dt <- fread('floreadaexport/P3_combodf.txt')
