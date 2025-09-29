@@ -86,5 +86,5 @@ filter(p3dt, `BL1-A` > 0)
 ```
 
 ## Need More Help?
-- Read 00_SUMMARY.txt for detailed explanations
+- Read SUMMARY.txt (Upcoming)
 - Read platesetup_instructions.txt for platesetup info
