@@ -3,7 +3,7 @@
 ## 5-Minute Setup
 
 ### 1. Copy Files
-Copy these files to your experiment folder:
+Download `base_pack` and copy these files to your experiment folder:
 - `floreada_functions.R` - Core functions
 - `process_floreada_export.R` - Main script  
 - `platesetup.txt` - Template (customize this!)
