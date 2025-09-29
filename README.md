@@ -25,7 +25,7 @@ Open Excel or your Text Editor, edit the template / create a table like this, th
 
 | FileID | Sample | Spacer | Backbone | Backbone2 | gSZID | crRNAMOI | Stain | Cells | Protein | Description |
 |--------|--------|--------|----------|-----------|-------|----------|-------|-------|---------|-------------|
-| 259 | PC3_NT | None-No_guide | CRISPRa-VP64 | | NA | pSZ002 | 0.5 | GFP_only | PC3 | NA |
+| 259 | PC3_NT | None-No_guide | CRISPRa-VP64 | NA | pSZ002 | 0.5 | GFP_only | PC3 | NA | NA |
 | 260 | PC3_NT | None-No_guide | CRISPRa-VPR | NA | pSZ003 | 0.5 | GFP_only | PC3 | NA | NA |
 
 **Important**: First column should be `FileID`, `WellID`, or `File` depending on how your files are named. If you are using FileID, remember to put " " around the IDs. See `platesetup_instructions.txt` for more information.
