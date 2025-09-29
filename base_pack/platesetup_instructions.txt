@@ -1,0 +1,46 @@
+# platesetup.txt - Template and Instructions
+# 
+# This file maps your flow cytometry files to experimental conditions.
+# Create this file in Excel and save as tab-delimited text (.txt)
+#
+# IMPORTANT: The first column must match how you identify your files:
+# - If using WellID (e.g., A1, B2): first column should be "WellID"
+# - If using FileID (e.g., 259, 260): first column should be "FileID"  
+# - If using filename: first column should be "File"
+#
+# Add as many metadata columns as needed for your experiment.
+# These will be merged with the flow data.
+
+# Example 1: Using WellID (most common for plate-based experiments)
+# Save this as a tab-delimited file without the # comment lines
+
+WellID	Sample	Spacer	Backbone	gCHID	crRNAMOI	Stain	Treatment
+A1	Sample1	NT-3	pCH38	gCH001	0.5	CD151-APC + CD55-PE	Control
+A2	Sample2	CD151	pCH38	gCH002	0.5	CD151-APC + CD55-PE	Control
+A3	Sample3	CD55	pCH38	gCH003	0.5	CD151-APC + CD55-PE	Control
+B1	Sample4	NT-3	pCH39	gCH001	1.0	CD55-APC + CD81-PE	Control
+B2	Sample5	CD81	pCH39	gCH004	1.0	CD55-APC + CD81-PE	Control
+B3	Sample6	CD55	pCH39	gCH005	1.0	CD55-APC + CD81-PE	Control
+C1	Sample7	uninfected	pRG212	gCH000	0	None	Control
+
+# Example 2: Using FileID (if keywords.txt has $FIL field or filename is just a number)
+
+FileID	Sample	Condition	Replicate	Concentration
+"259"	Exp1_A	Treated	1	10uM
+"260"	Exp1_B	Treated	2	10uM
+"261"	Exp1_C	Control	1	0uM
+"262"	Exp1_D	Control	2	0uM
+
+# Example 3: Using full filename
+
+File	Experiment	CellType	Day	MOI
+259.fcs.csv	Exp1	K562	Day6	0.5
+260.fcs.csv	Exp1	K562	Day6	1.0
+261.fcs.csv	Exp1	HEK293T	Day6	0.5
+
+# Tips:
+# - Make sure the matching column (WellID/FileID/File) contains values that can be found in your CSV files or keywords.txt
+# - You can include any experimental metadata columns you want
+# - Column names should not contain spaces or special characters (use underscore instead)
+# - The script will automatically merge this information with your flow data
+# - If a file doesn't match any row in platesetup.txt, it will still be processed but won't have the extra metadata
