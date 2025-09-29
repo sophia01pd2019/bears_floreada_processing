@@ -1,4 +1,4 @@
-# Quick Start Guide - FLoreada Flow Processing
+# Quick Start Guide - Floreada Flow Processing
 
 ## 5-Minute Setup
 
