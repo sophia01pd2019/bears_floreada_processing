@@ -29,7 +29,7 @@ Open Excel, create table like this, save as tab-delimited text:
 | 260    | Exp1_B | Treated   | 1         |
 | 261    | Exp1_C | Control   | 2         |
 
-**Important**: First column should be `FileID`, `WellID`, or `File` depending on how your files are named.
+**Important**: First column should be `FileID`, `WellID`, or `File` depending on how your files are named. See `platesetup_instructions.txt` for more information.
 
 ### 4. Create keywords.txt
 
