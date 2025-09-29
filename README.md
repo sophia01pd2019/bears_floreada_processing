@@ -86,6 +86,5 @@ filter(p3dt, `BL1-A` > 0)
 ```
 
 ## Need More Help?
-- Read README_migration.md for detailed explanations
-- Read platesetup_instructions.txt for platesetup examples
-- Run test_setup.R to validate your configuration
+- Read 00_SUMMARY.txt for detailed explanations
+- Read platesetup_instructions.txt for platesetup info
